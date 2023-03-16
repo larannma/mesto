@@ -1,0 +1,8 @@
+.profile__info{
+  width: 336px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 16px;
+}
