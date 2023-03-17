@@ -1,6 +1,12 @@
 .profile__subtitle{
   margin: 0;
-  width: 100%;
   font-size: 18px;
   line-height: 22px;
+  text-align: end;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__subtitle{
+    opacity: 0.2;
+  }
 }
