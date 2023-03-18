@@ -3,3 +3,9 @@
   border: 1px solid #545454;
   margin-top: 35px;
 }
+
+@media screen and (max-width: 767px) {
+  .header__line{
+    margin-top: 26px;
+  }
+}

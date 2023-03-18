@@ -6,3 +6,10 @@
   align-self: center;
   /* border: solid red; */
 }
+
+@media screen and (max-width: 767px) {
+  .profile__edit-button{
+    width: 16px;
+  height: 16px;
+  }
+}
