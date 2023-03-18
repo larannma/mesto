@@ -1,5 +1,13 @@
-.header__line{
-  
-  opacity: 0.7;
-  border: 1px solid #545454;
+.header__logo{
+  height: 33px;
+  width: 142px;
+}
+
+@media screen and (max-width: 767px) {
+.header__logo{
+    padding-left: 27px;
+    opacity: 0.2;
+    height: 24px;
+    width: 103px;
+  }
 }
