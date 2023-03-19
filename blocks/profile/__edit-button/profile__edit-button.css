@@ -5,6 +5,9 @@
   display: flex;
   align-self: center;
   /* border: solid red; */
+  background-color: #000000;
+  cursor: pointer;
+  background: url(../../../images/edit.svg) center no-repeat;
 }
 
 .profile__edit-button:hover{

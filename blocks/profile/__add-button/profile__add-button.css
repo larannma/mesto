@@ -4,6 +4,9 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   display: flex;
+  background-color: #000000;
+  cursor: pointer;
+  background: url(../../../images/plus.svg) center no-repeat;
 }
 
 .profile__add-button:hover{
