@@ -1,4 +1,25 @@
 .element__like-ico{
-  width: 22px;
+  border: none;
+  background: url(../../../images/Vector.svg) center no-repeat;
+  background-size: 100%;
+  cursor: pointer;
   height: 19px;
+  width: 22px;
+  right: 10px;
+  opacity: 1;
+}
+
+.element__like-ico:hover {
+  opacity: 0.5;
+}
+
+.element__like-ico_active {
+  background: url(../../../images/Union.svg) center no-repeat;
+  border: none;
+  background-size: 100%;
+  cursor: pointer;
+  height: 19px;
+  width: 22px;
+  right: 10px;
+  opacity: 1;
 }
