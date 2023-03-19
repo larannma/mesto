@@ -20,18 +20,12 @@
           <div class="profile__info">
             <div class="profile__extra-info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <!-- <div class="profile__edit-button"> -->
-                <button class="profile__edit-button"></button>
-                <!-- <img src="./images/edit.svg" alt="Редактировать" class="profile__edit-image"> -->
-              <!-- </div> -->
+              <button class="profile__edit-button profile__caption-link"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <!-- <div class="profile__add-button"> -->
-          <button class="profile__add-button"></button>
-          <!-- <img src="./images/plus.svg" alt="Добавить" class="profile__add-image"> -->
-        <!-- </div> -->
+        <button class="profile__add-button"></button>
       </section>
       <section class="elements root__section">
         <div class="element">
@@ -82,17 +76,17 @@
       <p class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
   </div>
-  <div class="input">
-    <div class="input__form">
-      <input type="image" src="./images/CloseIcon.svg" class="input__close-button">
-      <div class="input__field">
-        <h2 class="input__title">Редактировать профиль</h2>
-        <input type="text" placeholder="Имя" class="input__text input__text_type_name">
-        <input type="text" placeholder="Деятельность" class="input__text input__text_type_interests">
-        <button class="input__submit-btn input__submit-btn_action_add">Сохранить</button>
-      </div>
+  <div class="popup">
+    <div class="popup__content">
+      <input type="image" src="./images/CloseIcon.svg" class="popup__close-button">
+      <form class="popup__form">
+        <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" placeholder="Имя" class="popup__text popup__text_type_name">
+          <input type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
+          <button type="submit" class="popup__submit-btn popup__submit-btn_action_add">Сохранить</button>
+      </form>
     </div>
   </div>
-  <script src="./scripts/script.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.input__submit-btn{
+.popup__submit-btn{
   margin-top: 48px;
   font-size: 18px;
   line-height: 22px;
@@ -12,6 +12,6 @@
   border: none;
 }
 
-.input__submit-btn:hover{
+.popup__submit-btn:hover{
   opacity: 0.8;
 }

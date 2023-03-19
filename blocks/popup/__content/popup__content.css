@@ -1,17 +1,16 @@
-.input__form{
+.popup__content{
   position: relative;
   width: 430px;
   max-height: 330px;
   height: 100%;
   margin: auto;
-  z-index: 10;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   display: flex;
 }
 
 @media screen and (max-width: 767px) {
-  .input__form{
+  .popup__content{
     width: 282px;
     max-height: 322px;
   }
