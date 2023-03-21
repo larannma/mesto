@@ -1,6 +1,6 @@
 # Проект: Место
 
-* [Ссылка на проект](larannma.github.io/mesto/)
+* [Ссылка на проект](https://larannma.github.io/mesto/)
 
 ### Обзор
 
