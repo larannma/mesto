@@ -1,4 +1,4 @@
-const editButton = document.querySelector(".profile__caption-link");
+const editButton = document.querySelector(".profile__edit-button");
 const editPopup = document.querySelector(".popup");
 const editPopupCloseButton = editPopup.querySelector(".popup__close-button");
 const nameInput = editPopup.querySelector(".popup__text_type_name");

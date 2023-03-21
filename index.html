@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mesto</title>
+  <title lang="en">mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="root">
-  <div class="page">
-    <header class="header">
-      <img src="./images/header__logo.svg" alt="Логатип" class="header__logo">
+  <div class="root__page">
+    <header class="header root__section">
+      <img src="./images/header__logo.svg" alt="Логатип проекта" class="header__logo">
       <div class="header__line"></div>
     </header>
     <main>
@@ -20,73 +20,75 @@
           <div class="profile__info">
             <div class="profile__extra-info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button profile__caption-link"></button>
+              <button type="button" aria-label="Кнопка редактирования профиля" class="profile__edit-button"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" aria-label="Кнопка добавления нового поста" class="profile__add-button"></button>
       </section>
-      <section class="elements root__section">
+      <section aria-label="Посты в профиле" class="elements root__section">
         <div class="element">
           <img src="./images/juk.png" alt="Жук" class="element__image">
           <div class="element__description">
-            <p class="element__name">Опасный зверь</p>
-            <button class="element__like-ico"></button>
+            <h2 class="element__name">Опасный зверь</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
         <div class="element">
           <img src="./images/kot.png" alt="Кот" class="element__image">
           <div class="element__description">
-            <p class="element__name">Друг человека</p>
-            <button class="element__like-ico"></button>
+            <h2 class="element__name">Друг человека</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
         <div class="element">
           <img src="./images/martyshka.png" alt="Мартышки" class="element__image">
           <div class="element__description">
-            <p class="element__name">Семья мартышек</p>
-            <button class="element__like-ico"></button>
+            <h2 class="element__name">Семья мартышек</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
         <div class="element">
           <img src="./images/okean.png" alt="Кит" class="element__image">
           <div class="element__description">
-            <p class="element__name">В глубине</p>
-            <button class="element__like-ico"></button>
+            <h2 class="element__name">В глубине</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
         <div class="element">
           <img src="./images/pauk.png" alt="Паук" class="element__image">
           <div class="element__description">
-            <p class="element__name">Глазастый</p>
-            <button class="element__like-ico"></button>
+            <h2 class="element__name">Глазастый</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
         <div class="element">
           <img src="./images/popugau.png" alt="Попугай" class="element__image">
           <div class="element__description">
-            <p class="element__name">Птица говорун</p>
-            <button class="element__like-ico element__like-ico_active"></button>
+            <h2 class="element__name">Птица говорун</h2>
+            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
           </div>
         </div>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__text">&copy; 2023 Mesto Russia</p>
+      <p lang="en" class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
   </div>
   <div class="popup">
-    <div class="popup__content">
-      <input type="image" src="./images/CloseIcon.svg" class="popup__close-button" alt="Закрыть">
-      <form class="popup__form">
+    <div class="popup__form">
+      <button type="button" src="./images/CloseIcon.svg" class="popup__close-button" alt="Закрыть"></button>
+      <div class="popup__main-info">
         <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Имя" class="popup__text popup__text_type_name">
-          <input type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
+        <form class="popup__form_name">
+          <input name="name" type="text" placeholder="Имя" class="popup__text popup__text_type_name">
+          <input name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
           <button type="submit" class="popup__submit-btn popup__submit-btn_action_add">Сохранить</button>
       </form>
+      </div>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/index.js" defer></script>
 </body>
 </html>

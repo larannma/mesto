@@ -6,6 +6,8 @@
   margin-left: 435px;
   flex-direction: column;
   cursor: pointer;
+  border: none;
+  background: url(../../../images/CloseIcon.svg) center no-repeat;
 }
 
 .popup__close-button:hover{
