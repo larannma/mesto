@@ -1,13 +1,14 @@
 .element__like-ico{
+  background-color: transparent;
   border: none;
   background: url(../../../images/Vector.svg) center no-repeat;
-  background-size: 100%;
+  background-size: cover;
   cursor: pointer;
   height: 19px;
   width: 22px;
-  right: 10px;
   opacity: 1;
   padding: 0;
+  transition: opacity 0.5s;
 }
 
 .element__like-ico:hover {

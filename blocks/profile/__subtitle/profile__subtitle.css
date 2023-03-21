@@ -3,7 +3,9 @@
   font-size: 18px;
   line-height: 22px;
   text-align: start;
-  /* border: solid red; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 900px) {
@@ -15,7 +17,6 @@
 
 @media screen and (max-width: 767px) {
   .profile__subtitle{
-    opacity: 0.2;
     text-align: center;
     font-size: 14px;
     line-height: 17px;
