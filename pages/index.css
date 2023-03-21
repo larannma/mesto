@@ -30,17 +30,12 @@
 @import url(../blocks/footer/__text/footer__text.css);
 /*edit-form*/
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
-@import url(../blocks/popup/__form/_name/popup__form_name.css);
 @import url(../blocks/popup/__main-info/popup__main-info.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__text/popup__text.css);
-@import url(../blocks/popup/__text/_type/popup__text_type.css);
-@import url(../blocks/popup/__text/_type/_name/popup__text_type_name.css);
-@import url(../blocks/popup/__text/_type/_interests/popup__text_type_interests.css);
 @import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
-@import url(../blocks/popup/__submit-btn/_action/popup__submit-btn_action.css);
-@import url(../blocks/popup/__submit-btn/_action/_add/popup__submit-btn_action_add.css);
-@import url(../blocks/popup/_open/popup_open.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
