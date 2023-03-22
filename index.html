@@ -11,7 +11,6 @@
   <div class="root__page">
     <header class="header root__section">
       <img src="./images/header__logo.svg" alt="Логатип проекта" class="header__logo">
-      <div class="header__line"></div>
     </header>
     <main>
       <section class="profile root__section">
@@ -79,14 +78,12 @@
   <div class="popup">
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
-      <div class="popup__main-info">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profile info" class="popup__form">
+      <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="profileInfo" class="popup__form">
           <input name="name" type="text" placeholder="Имя" class="popup__text popup__text_type_name">
           <input name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
-          <button type="submit" class="popup__submit-btn popup__submit-btn_action_add">Сохранить</button>
+          <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
-      </div>
     </div>
   </div>
   <script src="./scripts/index.js" defer></script>

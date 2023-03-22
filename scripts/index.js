@@ -3,7 +3,7 @@ const editPopup = document.querySelector(".popup");
 const editPopupCloseButton = editPopup.querySelector(".popup__close-button");
 const nameInput = editPopup.querySelector(".popup__text_type_name");
 const interestsInput = editPopup.querySelector(".popup__text_type_interests");
-const editPopupForm = editPopup.querySelector(".popup__container");
+const editPopupForm = editPopup.querySelector(".popup__form");
 const profileName = document.querySelector(".profile__title");
 const profileInterests = document.querySelector(".profile__subtitle");
 

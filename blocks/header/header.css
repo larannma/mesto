@@ -1,14 +1,13 @@
 .header{
   box-sizing: border-box;
-  padding: 45px 0 0;
+  padding: 45px 0 41px;
   max-width: 880px;
-  border-bottom: 1px solid #545454;
-  height: 119px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 1200px) {
   .header{
-    padding: 45px 0 0;
+    padding: 45px 0 41px;
   }
 }
 
@@ -20,7 +19,6 @@
 
 @media screen and (max-width: 767px) {
   .header{
-    padding: 28px 0 0;
-    height: 76px;
+    padding: 28px 0 31px;
   }
 }
