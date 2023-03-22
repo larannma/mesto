@@ -3,6 +3,7 @@
   border: none;
   background: url(../../../images/Vector.svg) center no-repeat;
   background-size: cover;
+  flex-shrink: 0;
   cursor: pointer;
   height: 19px;
   width: 22px;

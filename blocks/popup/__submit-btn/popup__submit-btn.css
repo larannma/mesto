@@ -4,7 +4,7 @@
   line-height: 22px;
   font-weight: 400;
   text-align: center;
-  max-width: 358px;
+  width: 358px;
   height: 50px;
   background-color: #000000;
   border-radius: 2px;
@@ -24,5 +24,6 @@
     height: 46px;
     font-size: 14px;
     line-height: 17px;
+    width: 238px;
   }
 }

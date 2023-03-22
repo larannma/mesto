@@ -1,11 +1,3 @@
 .element__like-ico_active {
-  background: url(../../../images/Union.svg) center no-repeat;
-  border: none;
-  background-size: 100%;
-  cursor: pointer;
-  flex-shrink: 0;
-  height: 19px;
-  width: 22px;
-  right: 10px;
-  opacity: 1;
+  background: url(../../../../images/Union.svg) center no-repeat;
 }
