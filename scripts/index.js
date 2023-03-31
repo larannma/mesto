@@ -99,7 +99,7 @@ const createCardElement = (cardData) => {
 
   likeButton.addEventListener('click', handleLike);
 
-  cardElement.addEventListener('click', () => {
+  cardImage.addEventListener('click', () => {
     const image = cardPopup.querySelector('.popup__image');
     const subtitle = cardPopup.querySelector('.popup__image-text');
     image.src = cardData.link;
