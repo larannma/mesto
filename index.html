@@ -28,7 +28,7 @@
       </section>
       <section aria-label="Посты в профиле" class="elements root__section">
         <template id="card">
-          <div class="element">
+          <div class="element" role="button">
             <button aria-label="Кнопка корзины" type="button" class="element__trash"></button>
             <img src="./images/juk.png" alt="Жук" class="element__image">
             <div class="element__description">
@@ -63,6 +63,13 @@
           <input name="interests" type="text" placeholder="Ссылка на картинку" class="popup__text popup__text_type_photo-link">
           <button type="submit" class="popup__submit-btn">Создать</button>
       </form>
+    </div>
+  </div>
+  <div class="popup cardPopup">
+    <div class="popup__image-container">
+      <button type="button" class="popup__close-button"></button>
+      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Красивая картинка" class="popup__image">
+      <p class="popup__image-text">Горный Алтай</p>
     </div>
   </div>
   <script src="./scripts/index.js" defer></script>

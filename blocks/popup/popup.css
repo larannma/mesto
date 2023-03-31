@@ -1,4 +1,6 @@
 .popup{
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
   color: #000000;
   background: rgb(0, 0, 0, 0.5);
@@ -8,8 +10,9 @@
   left: 0;
   bottom: 0;
   right: 0;
-  display: none;
+  display: flex;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   z-index: 999;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
