@@ -27,55 +27,23 @@
         <button type="button" aria-label="Кнопка добавления нового поста" class="profile__add-button"></button>
       </section>
       <section aria-label="Посты в профиле" class="elements root__section">
-        <div class="element">
-          <img src="./images/juk.png" alt="Жук" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">Опасный зверь</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
+        <template id="card">
+          <div class="element">
+            <button aria-label="Кнопка корзины" type="button" class="element__trash"></button>
+            <img src="./images/juk.png" alt="Жук" class="element__image">
+            <div class="element__description">
+              <h2 class="element__name">Опасный зверь</h2>
+              <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img src="./images/kot.png" alt="Кот" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">Друг человека</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/martyshka.png" alt="Мартышки" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">Семья мартышек</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/okean.png" alt="Кит" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">В глубине</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/pauk.png" alt="Паук" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">Глазастый</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/popugau.png" alt="Попугай" class="element__image">
-          <div class="element__description">
-            <h2 class="element__name">Птица говорун</h2>
-            <button aria-label="Кнопка лайка" type="button" class="element__like-ico"></button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p lang="en" class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup editPopup">
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -83,6 +51,17 @@
           <input name="name" type="text" placeholder="Имя" class="popup__text popup__text_type_name">
           <input name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
           <button type="submit" class="popup__submit-btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup addPopup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+      <h2 class="popup__title">Новое место</h2>
+        <form name="profileInfo" class="popup__form">
+          <input name="name" type="text" placeholder="Название" class="popup__text popup__text_type_name">
+          <input name="interests" type="text" placeholder="Ссылка на картинку" class="popup__text popup__text_type_photo-link">
+          <button type="submit" class="popup__submit-btn">Создать</button>
       </form>
     </div>
   </div>
