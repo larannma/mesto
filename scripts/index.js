@@ -6,15 +6,35 @@ const interestsInput = editPopup.querySelector(".popup__text_type_interests");
 const popupEditForm = editPopup.querySelector(".popup__form");
 const profileName = document.querySelector(".profile__title");
 const profileInterests = document.querySelector(".profile__subtitle");
+const cardTemplate = document.getElementById('card');
+const cardContainer = document.querySelector(".elements");
+const buttonAdd = document.querySelector('.profile__add-button');
+const cardAddPopup = document.querySelector('.addPopup');
+const buttonCloseAddingPopup = cardAddPopup.querySelector(".popup__close-button");
+const cardAddForm = cardAddPopup.querySelector('.popup__form');
+const nameInputAddForm = cardAddForm.querySelector('.popup__text_type_name');
+const photoLinkInput = cardAddForm.querySelector('.popup__text_type_photo-link');
+const cardPopup = document.querySelector('.cardPopup');
+const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
+const image = cardPopup.querySelector('.popup__image');
+const subtitle = cardPopup.querySelector('.popup__image-text');
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+}
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+}
 
 buttonEditProfile.addEventListener('click', () => {
-  editPopup.classList.add("popup_opened");
+  openPopup(editPopup);
   nameInput.value = profileName.textContent;
   interestsInput.value = profileInterests.textContent;
 });
 
 buttonClosePopupProfile.addEventListener('click', () => {
-  editPopup.classList.remove("popup_opened");
+  closePopup(editPopup);
 });
 
 popupEditForm.addEventListener('submit', (event) => {
@@ -24,25 +44,12 @@ popupEditForm.addEventListener('submit', (event) => {
 
   profileName.textContent = name;
   profileInterests.textContent = interests;
-  editPopup.classList.remove("popup_opened");
+  closePopup(editPopup);
 });
 
-const cardTemplate = document.getElementById('card');
-const cardContainer = document.querySelector(".elements");
-const buttonAdd = document.querySelector('.profile__add-button');
-const cardAddPopup = document.querySelector('.addPopup');
-const buttonCloseAddingPopup = cardAddPopup.querySelector(".popup__close-button");
-const cardAddForm = cardAddPopup.querySelector('.popup__form');
-const cardPopup = document.querySelector('.cardPopup');
-const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
-
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-}
-
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-}
+cardCloseCardPopup.addEventListener('click', () => {
+  closePopup(cardPopup);
+});
 
 const createCardElement = (cardData) => {
   const cardElement = cardTemplate.content.querySelector(".element").cloneNode(true);
@@ -71,15 +78,10 @@ const createCardElement = (cardData) => {
   likeButton.addEventListener('click', handleLike);
 
   cardImage.addEventListener('click', () => {
-    const image = cardPopup.querySelector('.popup__image');
-    const subtitle = cardPopup.querySelector('.popup__image-text');
     image.src = cardData.link;
+    image.alt = cardData.name;
     subtitle.innerHTML = cardData.name;
     openPopup(cardPopup);
-  });
-
-  cardCloseCardPopup.addEventListener('click', () => {
-    closePopup(cardPopup);
   });
 
   return cardElement;
@@ -107,13 +109,9 @@ const closeAddPopup = () => {
 
 buttonCloseAddingPopup.addEventListener('click', closeAddPopup);
 
-const handlePopupSubmit = (evt) => {
+const handleAddPopupSubmit = (evt) => {
   evt.preventDefault();
-
-  const nameInput = cardAddForm.querySelector('.popup__text_type_name');
-  const photoLinkInput = cardAddForm.querySelector('.popup__text_type_photo-link');
-
-  const name = nameInput.value;
+  const name = nameInputAddForm.value;
   const link = photoLinkInput.value;
 
   const cardData = {
@@ -125,4 +123,4 @@ const handlePopupSubmit = (evt) => {
   closeAddPopup();
 };
 
-cardAddForm.addEventListener('submit', handlePopupSubmit);
+cardAddForm.addEventListener('submit', handleAddPopupSubmit);
