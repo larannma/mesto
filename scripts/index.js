@@ -96,18 +96,14 @@ initialCards.forEach((card) => {
 });
 
 buttonAdd.addEventListener('click', () => {
-  const nameInput = cardAddForm.querySelector('.popup__text_type_name');
-  const photoLinkInput = cardAddForm.querySelector('.popup__text_type_photo-link');
-  nameInput.value = "";
+  nameInputAddForm.value = "";
   photoLinkInput.value = "";
   openPopup(cardAddPopup);
 });
 
-const closeAddPopup = () => {
-  cardAddPopup.classList.remove("popup_opened");
-};
-
-buttonCloseAddingPopup.addEventListener('click', closeAddPopup);
+buttonCloseAddingPopup.addEventListener('click', () => {
+  closePopup(cardAddPopup);
+});
 
 const handleAddPopupSubmit = (evt) => {
   evt.preventDefault();
@@ -120,7 +116,7 @@ const handleAddPopupSubmit = (evt) => {
   }
 
   renderCardElement(createCardElement(cardData));
-  closeAddPopup();
+  closePopup(cardAddPopup);
 };
 
 cardAddForm.addEventListener('submit', handleAddPopupSubmit);
