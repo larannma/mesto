@@ -16,3 +16,4 @@
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
+* [Ссылка на логику проекта](https://miro.com/app/board/uXjVMVnofuQ=/?share_link_id=603517176681)
