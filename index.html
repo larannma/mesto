@@ -48,9 +48,11 @@
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profileInfo" class="popup__form">
-          <input name="name" type="text" placeholder="Имя" class="popup__text popup__text_type_name">
-          <input name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests">
+        <form name="profileInfo" class="popup__form" novalidate>
+          <input id="name-input" name="name" type="text" placeholder="Имя" class="popup__text popup__text_type_name" required minlength="2" maxlength="40">
+          <span class="name-input-error popup__text-error"></span>
+          <input id="interests-input" name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests" required minlength="2" maxlength="200">
+          <span class="interests-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
     </div>
@@ -59,9 +61,11 @@
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Новое место</h2>
-        <form name="profileInfo" class="popup__form">
-          <input name="name" type="text" placeholder="Название" class="popup__text popup__text_type_name">
-          <input name="interests" type="text" placeholder="Ссылка на картинку" class="popup__text popup__text_type_photo-link">
+        <form name="cardInfo" class="popup__form" novalidate>
+          <input id="cardName-input" name="name" type="text" placeholder="Название" class="popup__text popup__text_type_name" required minlength="2" maxlength="30">
+          <span class="cardName-input-error popup__text-error"></span>
+          <input id="photo-link-input" name="photo-link" type="url" placeholder="Ссылка на картинку" class="popup__text popup__text_type_photo-link" required>
+          <span class="photo-link-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn">Создать</button>
       </form>
     </div>

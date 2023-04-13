@@ -41,3 +41,7 @@
 @import url(../blocks/popup/__image-text/popup__image-text.css);
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/cardPopup/cardPopup.css);
+
+@import url(../blocks/popup/__text/_type/popup__text_type_invalid.css);
+@import url(../blocks/popup/__text/popup__text-error.css);
+@import url(../blocks/popup/__submit-btn/_inactive/popup__submit-btn_inactive.css);
