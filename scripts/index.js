@@ -106,7 +106,7 @@ buttonAdd.addEventListener('click', () => {
 // const enableToClosePopups = () => {
 //   const popupList = Array.from(document.querySelectorAll('.popup'));
 
-  
+
 //   popupList.forEach((popupElement) => {
 //     popupElement.addEventListener('click', function () {
 //       closePopup(popupElement);
@@ -158,8 +158,7 @@ const hasInvalidInput = (inputList) => {
 
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
-
-const toggleButtonState = (inputList, buttonElement) => {
+function toggleButtonState(inputList, buttonElement){
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
@@ -168,7 +167,7 @@ const toggleButtonState = (inputList, buttonElement) => {
     // иначе сделай кнопку активной
     buttonElement.classList.remove('popup__submit-btn_inactive');
   }
-};
+}
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   // Находим элемент ошибки внутри самой функции
