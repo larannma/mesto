@@ -19,12 +19,22 @@ const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
 const image = cardPopup.querySelector('.popup__image');
 const subtitle = cardPopup.querySelector('.popup__image-text');
 
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 buttonEditProfile.addEventListener('click', () => {
@@ -56,7 +66,7 @@ const createCardElement = (cardData) => {
   const cardName = cardElement.querySelector('.element__name');
   const cardImage = cardElement.querySelector('.element__image');
 
-  cardName.innerHTML = cardData.name;
+  cardName.textContent = cardData.name;
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
 
@@ -80,7 +90,7 @@ const createCardElement = (cardData) => {
   cardImage.addEventListener('click', () => {
     image.src = cardData.link;
     image.alt = cardData.name;
-    subtitle.innerHTML = cardData.name;
+    subtitle.textContent = cardData.name;
     openPopup(cardPopup);
   });
 
@@ -101,9 +111,8 @@ buttonAdd.addEventListener('click', () => {
   openPopup(cardAddPopup);
 });
 
-const enableToClosePopups = () => {
+const closeOnOverlay = () => {
   const popupList = Array.from(document.querySelectorAll('.popup'));
-
 
   popupList.forEach((popupElement) => {
     popupElement.addEventListener('click', function (evt) {
@@ -111,17 +120,10 @@ const enableToClosePopups = () => {
         closePopup(popupElement);
       }
     });
-
-    document.addEventListener('keydown', function(evt) {
-      if (evt.key === 'Escape') {
-        closePopup(popupElement);
-      }
-    });
   });
 };
 
-enableToClosePopups();
-
+closeOnOverlay();
 
 buttonCloseAddingPopup.addEventListener('click', () => {
   closePopup(cardAddPopup);
