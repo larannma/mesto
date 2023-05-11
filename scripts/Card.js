@@ -1,22 +1,26 @@
 class Card {
   constructor(cardData, templateSelector, onClick) {
-    this._Element = templateSelector.content.querySelector(".element").cloneNode(true);
-    this._Name = this._Element.querySelector('.element__name');
-    this._Image = this._Element.querySelector('.element__image');
+    this._template = this._getCardTemplate(templateSelector);
+    this._name = this._template.querySelector('.element__name');
+    this._image = this._template.querySelector('.element__image');
     this._onClick = onClick;
-    this._Data = cardData;
+    this._data = cardData;
 
-    this._Name.textContent = cardData.name;
-    this._Image.src = cardData.link;
-    this._Image.alt = cardData.name;
+    this._name.textContent = cardData.name;
+    this._image.src = cardData.link;
+    this._image.alt = cardData.name;
 
-    this._deleteButton = this._Element.querySelector('.element__trash');
-    this._likeButton = this._Element.querySelector('.element__like-ico');
+    this._deleteButton = this._template.querySelector('.element__trash');
+    this._likeButton = this._template.querySelector('.element__like-ico');
+  }
+
+  _getCardTemplate = (templateSelector) => {
+    return templateSelector.content.querySelector(".element").cloneNode(true);
   }
 
   _handleDelete = (evt) => {
     evt.stopPropagation();
-    this._Element.remove();
+    this._template.remove();
   };
 
   _handleLike = (evt) => {
@@ -25,19 +29,18 @@ class Card {
   };
 
   _handleCardClick = () => {
-    this._onClick(this._Data);
+    this._onClick(this._data);
   }
 
   _setEventListeners = () => {
     this._deleteButton.addEventListener('click', this._handleDelete);
     this._likeButton.addEventListener('click', this._handleLike);
-    console.log("lol")
-    this._Image.addEventListener('click', this._handleCardClick);
+    this._image.addEventListener('click', this._handleCardClick);
   }
 
   generateCard = () => {
     this._setEventListeners();
-    return this._Element;
+    return this._template;
   }
 
 }

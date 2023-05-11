@@ -22,6 +22,12 @@ const subtitle = cardPopup.querySelector('.popup__image-text');
 import FormValidator from "../scripts/FormValidator.js"
 import Card from "../scripts/Card.js"
 
+function createCard(cardData) {
+    const preCard = new Card(cardData, cardTemplate, handleCardClick);
+    const card = preCard.generateCard();
+    return card;
+}
+
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
@@ -75,8 +81,7 @@ const renderCardElement = (cardElement) =>{
 }
 
 initialCards.forEach((cardData) => {
-  const preCard = new Card(cardData, cardTemplate, handleCardClick);
-  const card = preCard.generateCard();
+  const card = createCard(cardData);
   renderCardElement(card);
 });
 
@@ -114,10 +119,7 @@ const handleAddPopupSubmit = (evt) => {
     link,
   }
 
-  const preCard = new Card(cardData, cardTemplate, handleCardClick);
-  const card = preCard.generateCard();
-
-  renderCardElement(card);
+  renderCardElement(createCard(cardData));
   closePopup(cardAddPopup);
 };
 
