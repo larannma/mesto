@@ -19,6 +19,8 @@ const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
 const image = cardPopup.querySelector('.popup__image');
 const subtitle = cardPopup.querySelector('.popup__image-text');
 
+import FormValidator from "../scripts/FormValidator.js"
+import Card from "../scripts/Card.js"
 
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
@@ -61,48 +63,21 @@ cardCloseCardPopup.addEventListener('click', () => {
   closePopup(cardPopup);
 });
 
-const createCardElement = (cardData) => {
-  const cardElement = cardTemplate.content.querySelector(".element").cloneNode(true);
-  const cardName = cardElement.querySelector('.element__name');
-  const cardImage = cardElement.querySelector('.element__image');
-
-  cardName.textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-
-  const deleteButton = cardElement.querySelector('.element__trash');
-  const likeButton = cardElement.querySelector('.element__like-ico');
-
-  const handleDelete = (evt) => {
-    evt.stopPropagation();
-    cardElement.remove();
-  };
-
-  const handleLike = (evt) => {
-    evt.stopPropagation();
-    likeButton.classList.toggle('element__like-ico_active');
-  };
-
-  deleteButton.addEventListener('click', handleDelete);
-
-  likeButton.addEventListener('click', handleLike);
-
-  cardImage.addEventListener('click', () => {
-    image.src = cardData.link;
-    image.alt = cardData.name;
-    subtitle.textContent = cardData.name;
-    openPopup(cardPopup);
-  });
-
-  return cardElement;
+const handleCardClick = (cardData) => {
+  image.src = cardData.link;
+  image.alt = cardData.name;
+  subtitle.textContent = cardData.name;
+  openPopup(cardPopup);
 }
 
 const renderCardElement = (cardElement) =>{
   cardContainer.prepend(cardElement);
 }
 
-initialCards.forEach((card) => {
-  renderCardElement(createCardElement(card));
+initialCards.forEach((cardData) => {
+  const preCard = new Card(cardData, cardTemplate, handleCardClick);
+  const card = preCard.generateCard();
+  renderCardElement(card);
 });
 
 buttonAdd.addEventListener('click', () => {
@@ -139,7 +114,10 @@ const handleAddPopupSubmit = (evt) => {
     link,
   }
 
-  renderCardElement(createCardElement(cardData));
+  const preCard = new Card(cardData, cardTemplate, handleCardClick);
+  const card = preCard.generateCard();
+
+  renderCardElement(card);
   closePopup(cardAddPopup);
 };
 
@@ -154,5 +132,8 @@ const config = {
   errorClass: 'popup__text_error',
 }
 
-// Вызовем функцию валидации
-enableValidation(config);
+const profileValidator = new FormValidator(config, editPopup);
+const cardValidator = new FormValidator(config, cardAddPopup);
+
+profileValidator.enableValidation();
+cardValidator.enableValidation();

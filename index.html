@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title lang="en">mesto</title>
   <script src="./scripts/initialCards.js"></script>
-  <script src="./scripts/validate.js"></script>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="root">
@@ -55,7 +54,7 @@
           <input id="interests-input" name="interests" type="text" placeholder="Деятельность" class="popup__text popup__text_type_interests" required minlength="2" maxlength="200">
           <span class="interests-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn">Сохранить</button>
-      </form>
+        </form>
     </div>
   </div>
   <div class="popup addPopup">
@@ -78,6 +77,6 @@
       <p class="popup__image-text">Горный Алтай</p>
     </div>
   </div>
-  <script src="./scripts/index.js" defer></script>
+  <script type="module" src="./scripts/index.js" defer></script>
 </body>
 </html>
