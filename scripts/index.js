@@ -1,3 +1,6 @@
+import FormValidator from "../scripts/FormValidator.js";
+import Card from "../scripts/Card.js";
+
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const editPopup = document.querySelector(".editPopup");
 const buttonClosePopupProfile = editPopup.querySelector(".popup__close-button");
@@ -18,9 +21,6 @@ const cardPopup = document.querySelector('.cardPopup');
 const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
 const image = cardPopup.querySelector('.popup__image');
 const subtitle = cardPopup.querySelector('.popup__image-text');
-
-import FormValidator from "../scripts/FormValidator.js"
-import Card from "../scripts/Card.js"
 
 function createCard(cardData) {
     const preCard = new Card(cardData, cardTemplate, handleCardClick);

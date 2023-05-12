@@ -17,6 +17,10 @@ class FormValidator {
     })
   };
 
+  _setForm = () => {
+    this._form =  this._formElement.querySelector(this._formSelector);
+  }
+
   _getInputArray = () => {
     return Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
@@ -57,10 +61,11 @@ class FormValidator {
     }
   };
 
-  _setEventListeners = (formElement) => {
-    formElement.addEventListener('submit', (evt) => {
+  _setEventListeners = () => {
+    this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      formElement.reset();
+      this._setForm();
+      this._form.reset();
       this._toggleButtonState(this._buttonElement);
     });
 
@@ -75,8 +80,7 @@ class FormValidator {
   };
 
   enableValidation = () => {
-    const form = document.querySelector(this._formSelector);
-    this._setEventListeners(form);
+    this._setEventListeners();
   };
 }
 
