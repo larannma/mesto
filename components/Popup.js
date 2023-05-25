@@ -10,8 +10,9 @@ export default class Popup {
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
+      console.log(this);
       const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup);
+      openedPopup.classList.remove('popup_opened');
     }
   }
 
@@ -29,6 +30,12 @@ export default class Popup {
     this._setCloseButton();
     this._closePopupButton.addEventListener('click', () => {
       this.close();
-    })
+    });
+
+    this._popup.addEventListener('click', (evt) => {
+      if (evt.currentTarget === evt.target) {
+        this.close();
+      }
+    });
   }
 }

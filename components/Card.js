@@ -1,9 +1,9 @@
 class Card {
-  constructor(cardData, templateSelector, onClick) {
+  constructor({cardData, handleCardClick}, templateSelector) {
     this._template = this._getCardTemplate(templateSelector);
     this._name = this._template.querySelector('.element__name');
     this._image = this._template.querySelector('.element__image');
-    this._onClick = onClick;
+    this._handleCardClick = handleCardClick;
     this._data = cardData;
 
     this._name.textContent = cardData.name;
@@ -28,14 +28,10 @@ class Card {
     this._likeButton.classList.toggle('element__like-ico_active');
   };
 
-  _handleCardClick = () => {
-    this._onClick(this._data);
-  }
-
   _setEventListeners = () => {
     this._deleteButton.addEventListener('click', this._handleDelete);
     this._likeButton.addEventListener('click', this._handleLike);
-    this._image.addEventListener('click', this._handleCardClick);
+    this._image.addEventListener('click', this._handleCardClick.bind(this.data));
   }
 
   generateCard = () => {
