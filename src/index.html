@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title lang="en">mesto</title>
   <!-- <script src="./scripts/initialCards.js"></script> -->
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body class="root">
   <div class="root__page">
     <header class="header root__section">
-      <img src="./images/header__logo.svg" alt="Логатип проекта" class="header__logo">
+      <img src="<%=require('./images/header__logo.svg')%>" alt="Логатип проекта" class="header__logo">
     </header>
     <main>
       <section class="profile root__section">
         <div class="profile__base">
-          <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+          <img src= "<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
           <div class="profile__info">
             <div class="profile__extra-info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -77,6 +77,6 @@
       <p class="popup__image-text">Горный Алтай</p>
     </div>
   </div>
-  <script type="module" src="./pages/index.js" defer></script>
+  <!-- <script type="module" src="../dist/index.js" defer></script> -->
 </body>
 </html>
