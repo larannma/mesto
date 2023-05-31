@@ -52,9 +52,9 @@ const cardList = new Section({
 
 cardList.renderItems();
 
-const handleAddPopupSubmit = () => {
-  const name = nameInputAddForm.value;
-  const link = photoLinkInput.value;
+const handleAddPopupSubmit = (formData) => {
+  const name = formData.name;
+  const link = formData['photo-link'];
 
   const cardData = {
     name,
@@ -65,10 +65,6 @@ const handleAddPopupSubmit = () => {
   cardList.addItem(cardElement);
 };
 
-const handleEditPopupSubmit = () => {
-  userInfo.setUserInfo({name: nameInput.value, info: interestsInput.value})
-};
-
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__text',
@@ -77,6 +73,10 @@ const config = {
   inputErrorClass: 'popup__text_type_invalid',
   errorClass: 'popup__text_error',
 }
+
+const handleEditPopupSubmit = (formData) => {
+  userInfo.setUserInfo({name: formData.name, info: formData.interests})
+};
 
 const editProfilePopup = new PopupWithForm(".editPopup", handleEditPopupSubmit);
 const addCardPopup = new PopupWithForm('.addPopup', handleAddPopupSubmit);
@@ -98,7 +98,5 @@ buttonEditProfile.addEventListener('click', (evt) => {
 });
 
 buttonAdd.addEventListener('click', () => {
-  nameInputAddForm.value = "";
-  photoLinkInput.value = "";
   addCardPopup.open();
 });
