@@ -1,10 +1,12 @@
 class Card {
-  constructor({cardData, handleCardClick}, templateSelector) {
+  constructor({cardData, handleCardClick}, templateSelector, api) {
     this._template = this._getCardTemplate(templateSelector);
     this._name = this._template.querySelector('.element__name');
     this._image = this._template.querySelector('.element__image');
     this._handleCardClick = handleCardClick;
     this._data = cardData;
+    this._api = api;
+    this._id = cardData._id;
 
     this._name.textContent = cardData.name;
     this._image.src = cardData.link;
@@ -20,6 +22,9 @@ class Card {
 
   _handleDelete = (evt) => {
     evt.stopPropagation();
+    this._api.deleteCard(this._id)
+    .then(()=> console.log("Удалено"))
+    .catch((err) => console.log("Somethig is wrong"));
     this._template.remove();
   };
 
