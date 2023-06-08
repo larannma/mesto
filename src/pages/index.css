@@ -25,6 +25,7 @@
 @import url(../blocks/element/__like-ico/element__like-ico.css);
 @import url(../blocks/element/__like-ico/_active/element__like-ico_active.css);
 @import url(../blocks/element/__trash/element__trash.css);
+@import url(../blocks/element/__like-count/element__like-count.css);
 /*footer*/
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

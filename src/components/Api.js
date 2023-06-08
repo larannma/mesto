@@ -12,12 +12,7 @@ export default class Api {
                 'Content-type': 'aplication/json'
             }
         })
-        .then((res) => {
-            if (res.ok){
-                return res.json()
-            }else{
-                return Promise.reject(`Ошибка ${res.status}`)
-            }})
+        .then(this._handleResponse);
     }
 
     deleteCard(cardID) {
@@ -28,11 +23,74 @@ export default class Api {
                 'Content-type': 'aplication/json'
             }
         })
-        .then((res) => {
-            if (res.ok){
-                return res.json()
-            }else{
-                return Promise.reject(`Ошибка ${res.status}`)
-            }})
+        .then(this._handleResponse);
     }
+
+    postCard(name, link) {
+      return fetch(`${this._url}/cards/`, {
+        method: "POST",
+        headers: {
+          authorization: this._authorization,
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          link: link,
+        })
+      })
+      .then(this._handleResponse);
+    }
+
+    getUserInfo(){
+      return fetch(`${this._url}/users/me`, {
+          headers: {
+              authorization: this._authorization,
+              'Content-type': 'aplication/json'
+          }
+      })
+      .then(this._handleResponse);
+  }
+
+  editUserInfo(name, about) {
+    return fetch(`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      })
+    })
+    .then(this._handleResponse);
+  }
+
+  _handleResponse(res) {
+    if (res.ok){
+      return res.json()
+    } else {
+      return Promise.reject(`Ошибка ${res.status}`)
+    }
+  }
+
+  getAppInfo() {
+    return Promise.all([this.getCards(), this.getUserInfo()]);
+  }
+
+  getCardInfo(name, link) {
+    return Promise.all([this.postCard(name, link), this.getUserInfo()]);
+  }
+
+  addLike(userData, cardID) {
+    return fetch(`${this._url}/cards/${cardID}/likes`, {
+      method: "POST",
+      headers: {
+        authorization: this._authorization,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(this._handleResponse);
+  }
 }
