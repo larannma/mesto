@@ -1,5 +1,5 @@
 class Card {
-  constructor({cardData, userData, handleCardClick}, templateSelector, api) {
+  constructor({cardData, userData, handleCardClick, handleDeleteIconClick}, templateSelector, api) {
     this._template = this._getCardTemplate(templateSelector);
     this._name = this._template.querySelector('.element__name');
     this._image = this._template.querySelector('.element__image');
@@ -13,7 +13,7 @@ class Card {
     this._likesAmount = cardData.likes.length
     this._cardId = cardData._id;
     this._userData = userData;
-    // console.log(cardData)
+    this._handleDeleteIconClick = handleDeleteIconClick;
 
     this._name.textContent = cardData.name;
     this._image.src = cardData.link;
@@ -32,21 +32,34 @@ class Card {
   }
 
   _handleDelete = (evt) => {
-    evt.stopPropagation();
-    this._api.deleteCard(this._id)
-    .then(()=> console.log("Удалено"))
-    .catch((err) => console.log(`Somethig is wrong ${err}`));
-    this._template.remove();
+    // evt.stopPropagation();
+    // this._api.deleteCard(this._id)
+    // .then(()=> console.log("Удалено"))
+    // .catch((err) => console.log(`Somethig is wrong ${err}`));
+    // this._template.remove();
   };
 
   _handleLike = (evt) => {
     evt.stopPropagation();
-    this._api.addLike(this._userData, this._cardId).then((res) => console.log(res));
+    if (this._likeButton.classList.contains('element__like-ico_active')){
+      this._api.deleteLike(this._userData, this._cardId).then((res) => {
+        this._likesAmount = res.likes.length
+        this._likeCountProperty.textContent = this._likesAmount;
+      });
+    }else{
+      this._api.putLike(this._userData, this._cardId).then((res) => {
+        this._likesAmount = res.likes.length
+        this._likeCountProperty.textContent = this._likesAmount;
+      });
+    }
     this._likeButton.classList.toggle('element__like-ico_active');
   };
 
   _setEventListeners = () => {
-    this._deleteButton.addEventListener('click', this._handleDelete);
+    this._deleteButton.addEventListener('click', () => {
+      this._handleDeleteIconClick(this.data, this._template);
+    });
+    // this._deleteButton.addEventListener('click', this._handleDelete);
     this._likeButton.addEventListener('click', this._handleLike);
     this._image.addEventListener('click', this._handleCardClick.bind(this.data));
   }
@@ -56,6 +69,12 @@ class Card {
     this._likeCountProperty.textContent = this._likesAmount;
     if (this._cardOwner !== this._userId){
       this._disableTrashButton();
+    }
+
+    const hasTargetId = this._data.likes.some(like => like._id === this._userId);
+
+    if (hasTargetId) {
+      this._likeButton.classList.toggle('element__like-ico_active');
     }
     return this._template;
   }

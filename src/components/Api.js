@@ -82,9 +82,21 @@ export default class Api {
     return Promise.all([this.postCard(name, link), this.getUserInfo()]);
   }
 
-  addLike(userData, cardID) {
+  putLike(userData, cardID) {
     return fetch(`${this._url}/cards/${cardID}/likes`, {
-      method: "POST",
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(this._handleResponse);
+  }
+
+  deleteLike(userData, cardID) {
+    return fetch(`${this._url}/cards/${cardID}/likes`, {
+      method: "DELETE",
       headers: {
         authorization: this._authorization,
         'Content-type': 'application/json'

@@ -3,31 +3,20 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js"
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import ConfirmPopup from "../components/ConfirmPopup.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-
 import '../pages/index.css';
-
-const buttonEditProfile = document.querySelector(".profile__edit-button");
-const editPopup = document.querySelector(".editPopup");
-const buttonClosePopupProfile = editPopup.querySelector(".popup__close-button");
-const nameInput = editPopup.querySelector(".popup__text_type_name");
-const interestsInput = editPopup.querySelector(".popup__text_type_interests");
-const popupEditForm = editPopup.querySelector(".popup__form");
-const profileName = document.querySelector(".profile__title");
-const profileInterests = document.querySelector(".profile__subtitle");
-const cardTemplate = document.getElementById('card');
-const cardContainer = document.querySelector(".elements");
-const buttonAdd = document.querySelector('.profile__add-button');
-const cardAddPopup = document.querySelector('.addPopup');
-const buttonCloseAddingPopup = cardAddPopup.querySelector(".popup__close-button");
-const cardAddForm = cardAddPopup.querySelector('.popup__form');
-const nameInputAddForm = cardAddForm.querySelector('.popup__text_type_name');
-const photoLinkInput = cardAddForm.querySelector('.popup__text_type_photo-link');
-const cardPopup = document.querySelector('.cardPopup');
-const cardCloseCardPopup = cardPopup.querySelector('.popup__close-button');
-const image = cardPopup.querySelector('.popup__image');
-const subtitle = cardPopup.querySelector('.popup__image-text');
+import {buttonEditProfile,
+        editPopup,
+        nameInput,
+        interestsInput,
+        cardTemplate,
+        cardContainer,
+        buttonAdd,
+        cardAddPopup,
+        updateProfilePopup
+      } from '../utils/constants.js'
 
 const api = new Api ({
   url: 'https://mesto.nomoreparties.co/v1/cohort-68/',
@@ -39,8 +28,19 @@ const api = new Api ({
 const createCard = (cardData, userData) => {
   const card = new Card({cardData, userData, handleCardClick: () => {
     popupWithImage.open({link: cardData.link, name: cardData.name});
+  }, handleDeleteIconClick: (data, temp) => {
+    confirmPopup.open();
+    confirmPopup.getCardData(cardData, temp);
   }}, cardTemplate, api);
   return card.generateCard();
+}
+
+const handleDeleteConfirm = (cardData, temp) => {
+  api.deleteCard(cardData)
+  .then(()=> {
+    temp.remove();
+  })
+  .catch((err) => console.log(`Somethig is wrong ${err}`));
 }
 
 let cardList
@@ -58,6 +58,10 @@ api.getAppInfo().then(([cards, userData]) => {
 }).catch((err) => console.log(`catch: ${err}`));
 
 const popupWithImage = new PopupWithImage(".cardPopup");
+const confirmPopup = new ConfirmPopup('.confirmPopup', handleDeleteConfirm);
+
+confirmPopup.setEventListeners();
+
 const userInfo = new UserInfo({nameSelector: ".profile__title", infoSelector: ".profile__subtitle"});
 
 const info = api.getUserInfo().then((res) => {
