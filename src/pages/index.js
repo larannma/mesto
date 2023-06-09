@@ -15,7 +15,6 @@ import {buttonEditProfile,
         cardContainer,
         buttonAdd,
         cardAddPopup,
-        updateProfilePopup
       } from '../utils/constants.js'
 
 const api = new Api ({
@@ -63,6 +62,7 @@ const confirmPopup = new ConfirmPopup('.confirmPopup', handleDeleteConfirm);
 confirmPopup.setEventListeners();
 
 const userInfo = new UserInfo({nameSelector: ".profile__title", infoSelector: ".profile__subtitle"});
+
 
 const info = api.getUserInfo().then((res) => {
   userInfo.setUserInfo({name: res.name, info: res.about})
@@ -120,3 +120,8 @@ buttonAdd.addEventListener('click', () => {
   addCardPopup.open();
 });
 
+const editProfilePhoto = document.querySelector(".profile__overlay-container")
+
+editProfilePhoto.addEventListener("click", () => {
+  console.log("lololo")
+})

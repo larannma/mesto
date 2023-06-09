@@ -58,5 +58,5 @@ export {buttonEditProfile,
   buttonAdd,
   cardAddPopup,
   confirmPopup,
-  updateProfilePopup
+  updateProfilePopup,
 }
