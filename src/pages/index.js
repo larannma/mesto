@@ -15,6 +15,8 @@ import {buttonEditProfile,
         cardContainer,
         buttonAdd,
         cardAddPopup,
+        updateProfilePopup,
+        avatar
       } from '../utils/constants.js'
 
 const api = new Api ({
@@ -61,11 +63,11 @@ const confirmPopup = new ConfirmPopup('.confirmPopup', handleDeleteConfirm);
 
 confirmPopup.setEventListeners();
 
-const userInfo = new UserInfo({nameSelector: ".profile__title", infoSelector: ".profile__subtitle"});
+const userInfo = new UserInfo({nameSelector: ".profile__title", infoSelector: ".profile__subtitle", avatarSelector: ".profile__avatar"});
 
 
 const info = api.getUserInfo().then((res) => {
-  userInfo.setUserInfo({name: res.name, info: res.about})
+  userInfo.setUserAvatarInfo({name: res.name, info: res.about, avatar: res.avatar})
 })
 
 const handleAddPopupSubmit = (formData) => {
@@ -120,8 +122,20 @@ buttonAdd.addEventListener('click', () => {
   addCardPopup.open();
 });
 
-const editProfilePhoto = document.querySelector(".profile__overlay-container")
+const handleEditProfilePhoto = (formData) => {
+  avatar.alt = "avatar";
+  avatar.src = formData["photo-avatar-link"];
+  api.editUserPhoto(formData["photo-avatar-link"]);
+};
+
+const editProfilePhoto = document.querySelector(".profile__overlay-container");
+const editProfilePhotoPopup = new PopupWithForm('.updatePopup', handleEditProfilePhoto);
+editProfilePhotoPopup.setEventListeners();
+const editProfileValidator = new FormValidator(config, updateProfilePopup);
+
+editProfileValidator.enableValidation();
 
 editProfilePhoto.addEventListener("click", () => {
-  console.log("lololo")
+  editProfilePhotoPopup.open();
 })
+

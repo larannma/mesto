@@ -48,6 +48,7 @@ const image = cardPopup.querySelector('.popup__image');
 const subtitle = cardPopup.querySelector('.popup__image-text');
 const confirmPopup = document.querySelector('.confirmPopup');
 const updateProfilePopup = document.querySelector('.updatePopup');
+const avatar = document.querySelector('.profile__avatar');
 
 export {buttonEditProfile,
   editPopup,
@@ -59,4 +60,5 @@ export {buttonEditProfile,
   cardAddPopup,
   confirmPopup,
   updateProfilePopup,
+  avatar
 }

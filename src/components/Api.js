@@ -51,17 +51,17 @@ export default class Api {
       .then(this._handleResponse);
   }
 
-  editUserInfo(name, about) {
-    return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
-      headers: {
-        authorization: this._authorization,
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        about: about,
-      })
+    editUserInfo(name, about) {
+      return fetch(`${this._url}/users/me`, {
+        method: "PATCH",
+        headers: {
+          authorization: this._authorization,
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          about: about,
+        })
     })
     .then(this._handleResponse);
   }
@@ -102,6 +102,20 @@ export default class Api {
         'Content-type': 'application/json'
       },
       body: JSON.stringify(userData)
+    })
+    .then(this._handleResponse);
+  }
+
+  editUserPhoto(avatarURL) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: avatarURL
+      })
     })
     .then(this._handleResponse);
   }
