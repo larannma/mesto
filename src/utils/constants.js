@@ -25,6 +25,15 @@ export const initialCards = [
   }
 ];
 
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__text',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_inactive',
+  inputErrorClass: 'popup__text_type_invalid',
+  errorClass: 'popup__text_error',
+}
+
 
 const buttonEditProfile = document.querySelector(".profile__edit-button");
 const editPopup = document.querySelector(".editPopup");
@@ -60,5 +69,6 @@ export {buttonEditProfile,
   cardAddPopup,
   confirmPopup,
   updateProfilePopup,
-  avatar
+  avatar,
+  config
 }

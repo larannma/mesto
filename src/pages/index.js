@@ -16,7 +16,8 @@ import {buttonEditProfile,
         buttonAdd,
         cardAddPopup,
         updateProfilePopup,
-        avatar
+        avatar,
+        config
       } from '../utils/constants.js'
 
 const api = new Api ({
@@ -68,7 +69,7 @@ const userInfo = new UserInfo({nameSelector: ".profile__title", infoSelector: ".
 
 const info = api.getUserInfo().then((res) => {
   userInfo.setUserAvatarInfo({name: res.name, info: res.about, avatar: res.avatar})
-})
+}).catch((err) => console.log(`catch: ${err}`));
 
 const handleAddPopupSubmit = (formData) => {
   const name = formData.name;
@@ -82,25 +83,17 @@ const handleAddPopupSubmit = (formData) => {
   api.getCardInfo(name, link).then(([res, userData]) => {
     const cardElement = createCard(res, userData);
     cardList.addNewItem(cardElement);
-  });
+  }).catch((err) => console.log(`catch: ${err}`));;
 };
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__text',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_inactive',
-  inputErrorClass: 'popup__text_type_invalid',
-  errorClass: 'popup__text_error',
-}
 
 const handleEditPopupSubmit = (formData) => {
-  userInfo.setUserInfo({name: formData.name, info: formData.interests});
-  api.editUserInfo(formData.name, formData.interests);
+  api.editUserInfo(formData.name, formData.interests).then(() => {
+    userInfo.setUserInfo({name: formData.name, info: formData.interests});
+  }).catch((err) => console.log(`catch: ${err}`));
 };
 
-const editProfilePopup = new PopupWithForm(".editPopup", handleEditPopupSubmit);
-const addCardPopup = new PopupWithForm('.addPopup', handleAddPopupSubmit);
+const editProfilePopup = new PopupWithForm(".editPopup", handleEditPopupSubmit, config.inactiveButtonClass);
+const addCardPopup = new PopupWithForm('.addPopup', handleAddPopupSubmit, config.inactiveButtonClass);
 
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
@@ -125,11 +118,11 @@ buttonAdd.addEventListener('click', () => {
 const handleEditProfilePhoto = (formData) => {
   avatar.alt = "avatar";
   avatar.src = formData["photo-avatar-link"];
-  api.editUserPhoto(formData["photo-avatar-link"]);
+  api.editUserPhoto(formData["photo-avatar-link"]).catch((err) => console.log(`catch: ${err}`));;
 };
 
 const editProfilePhoto = document.querySelector(".profile__overlay-container");
-const editProfilePhotoPopup = new PopupWithForm('.updatePopup', handleEditProfilePhoto);
+const editProfilePhotoPopup = new PopupWithForm('.updatePopup', handleEditProfilePhoto, config.inactiveButtonClass);
 editProfilePhotoPopup.setEventListeners();
 const editProfileValidator = new FormValidator(config, updateProfilePopup);
 

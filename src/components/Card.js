@@ -45,14 +45,17 @@ class Card {
       this._api.deleteLike(this._userData, this._cardId).then((res) => {
         this._likesAmount = res.likes.length
         this._likeCountProperty.textContent = this._likesAmount;
-      });
+      }).then(() => {
+        this._likeButton.classList.toggle('element__like-ico_active');
+      }).catch((err) => console.log(`catch: ${err}`));;
     }else{
       this._api.putLike(this._userData, this._cardId).then((res) => {
         this._likesAmount = res.likes.length
         this._likeCountProperty.textContent = this._likesAmount;
-      });
+      }).then(() => {
+        this._likeButton.classList.toggle('element__like-ico_active');
+      }).catch((err) => console.log(`catch: ${err}`));;
     }
-    this._likeButton.classList.toggle('element__like-ico_active');
   };
 
   _setEventListeners = () => {
