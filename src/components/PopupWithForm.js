@@ -22,12 +22,21 @@ export default class PopupWithForm extends Popup{
     this._formElement.reset();
   }
 
+  async handleSubmit(evt) {
+    evt.preventDefault();
+    const originalText = this._submitButton.textContent;
+
+    try {
+      this._submitButton.textContent = 'Сохранение...';
+      await this._submitCallback(this._getInputValues());
+      this.close();
+    } finally {
+      this._submitButton.textContent = originalText;
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._submitCallback(this._getInputValues());
-      this.close();
-    });
+    this._formElement.addEventListener('submit', this.handleSubmit.bind(this));
   }
 }
