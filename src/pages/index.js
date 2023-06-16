@@ -16,7 +16,6 @@ import {buttonEditProfile,
         buttonAdd,
         cardAddPopup,
         updateProfilePopup,
-        avatar,
         config
       } from '../utils/constants.js'
 
@@ -27,6 +26,65 @@ const api = new Api ({
   }
 })
 
+const handleAddPopupSubmit = (formData) => {
+  const name = formData.name;
+  const link = formData['photo-link'];
+
+  const cardData = {
+    name,
+    link,
+  }
+
+  api.getCardInfo(name, link).then(([res, userData]) => {
+    const cardElement = createCard(res, userData);
+    cardList.addNewItem(cardElement);
+  }).catch((err) => console.log(`catch: ${err}`));;
+};
+
+const handleEditProfilePhoto = (formData) => {
+  api.editUserPhoto(formData["photo-avatar-link"]).then(() => {
+    userInfo.setUserPhoto({photoAlt: "avatar", photoLink: formData["photo-avatar-link"]})
+  }).catch((err) => console.log(`catch: ${err}`));;
+};
+
+const handleEditPopupSubmit = (formData) => {
+  api.editUserInfo(formData.name, formData.interests).then(() => {
+    userInfo.setUserInfo({name: formData.name, info: formData.interests});
+  }).catch((err) => console.log(`catch: ${err}`));
+};
+
+const handleDeleteConfirm = (cardData, temp) => {
+  api.deleteCard(cardData)
+  .then(()=> {
+    temp.remove();
+  })
+  .catch((err) => console.log(`Somethig is wrong ${err}`));
+}
+
+const editProfilePhoto = document.querySelector(".profile__overlay-container");
+const editProfilePhotoPopup = new PopupWithForm('.updatePopup', handleEditProfilePhoto, config.inactiveButtonClass);
+editProfilePhotoPopup.setEventListeners();
+const editProfileValidator = new FormValidator(config, updateProfilePopup);
+
+editProfileValidator.enableValidation();
+
+editProfilePhoto.addEventListener("click", () => {
+  editProfileValidator.disableSubmitButton();
+  editProfilePhotoPopup.open();
+})
+
+const editProfilePopup = new PopupWithForm(".editPopup", handleEditPopupSubmit, config.inactiveButtonClass);
+const addCardPopup = new PopupWithForm('.addPopup', handleAddPopupSubmit, config.inactiveButtonClass);
+
+editProfilePopup.setEventListeners();
+addCardPopup.setEventListeners();
+
+const profileValidator = new FormValidator(config, editPopup);
+const cardValidator = new FormValidator(config, cardAddPopup);
+
+profileValidator.enableValidation();
+cardValidator.enableValidation();
+
 const createCard = (cardData, userData) => {
   const card = new Card({cardData, userData, handleCardClick: () => {
     popupWithImage.open({link: cardData.link, name: cardData.name});
@@ -35,14 +93,6 @@ const createCard = (cardData, userData) => {
     confirmPopup.getCardData(cardData, temp);
   }}, cardTemplate, api);
   return card.generateCard();
-}
-
-const handleDeleteConfirm = (cardData, temp) => {
-  api.deleteCard(cardData)
-  .then(()=> {
-    temp.remove();
-  })
-  .catch((err) => console.log(`Somethig is wrong ${err}`));
 }
 
 let cardList
@@ -71,64 +121,15 @@ const info = api.getUserInfo().then((res) => {
   userInfo.setUserAvatarInfo({name: res.name, info: res.about, avatar: res.avatar})
 }).catch((err) => console.log(`catch: ${err}`));
 
-const handleAddPopupSubmit = (formData) => {
-  const name = formData.name;
-  const link = formData['photo-link'];
-
-  const cardData = {
-    name,
-    link,
-  }
-
-  api.getCardInfo(name, link).then(([res, userData]) => {
-    const cardElement = createCard(res, userData);
-    cardList.addNewItem(cardElement);
-  }).catch((err) => console.log(`catch: ${err}`));;
-};
-
-const handleEditPopupSubmit = (formData) => {
-  api.editUserInfo(formData.name, formData.interests).then(() => {
-    userInfo.setUserInfo({name: formData.name, info: formData.interests});
-  }).catch((err) => console.log(`catch: ${err}`));
-};
-
-const editProfilePopup = new PopupWithForm(".editPopup", handleEditPopupSubmit, config.inactiveButtonClass);
-const addCardPopup = new PopupWithForm('.addPopup', handleAddPopupSubmit, config.inactiveButtonClass);
-
-editProfilePopup.setEventListeners();
-addCardPopup.setEventListeners();
-
-const profileValidator = new FormValidator(config, editPopup);
-const cardValidator = new FormValidator(config, cardAddPopup);
-
-profileValidator.enableValidation();
-cardValidator.enableValidation();
-
-buttonEditProfile.addEventListener('click', (evt) => {
+buttonEditProfile.addEventListener('click', () => {
   const userData = userInfo.getUserInfo()
   nameInput.value = userData.name
   interestsInput.value = userData.info;
+  profileValidator.disableSubmitButton();
   editProfilePopup.open();
 });
 
 buttonAdd.addEventListener('click', () => {
+  cardValidator.disableSubmitButton();
   addCardPopup.open();
 });
-
-const handleEditProfilePhoto = (formData) => {
-  avatar.alt = "avatar";
-  avatar.src = formData["photo-avatar-link"];
-  api.editUserPhoto(formData["photo-avatar-link"]).catch((err) => console.log(`catch: ${err}`));;
-};
-
-const editProfilePhoto = document.querySelector(".profile__overlay-container");
-const editProfilePhotoPopup = new PopupWithForm('.updatePopup', handleEditProfilePhoto, config.inactiveButtonClass);
-editProfilePhotoPopup.setEventListeners();
-const editProfileValidator = new FormValidator(config, updateProfilePopup);
-
-editProfileValidator.enableValidation();
-
-editProfilePhoto.addEventListener("click", () => {
-  editProfilePhotoPopup.open();
-})
-

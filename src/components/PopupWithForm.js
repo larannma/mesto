@@ -23,12 +23,6 @@ export default class PopupWithForm extends Popup{
     this._formElement.reset();
   }
 
-  open() {
-    this._submitButton.classList.add(this._inactiveButtonClass);
-    this._submitButton.setAttribute('disabled', true);
-    super.open();
-  }
-
   async handleSubmit(evt) {
     evt.preventDefault();
     const originalText = this._submitButton.textContent;

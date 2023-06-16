@@ -13,7 +13,7 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo({ name, info, avatar}) {
+  setUserInfo({ name, info}) {
     this._nameElement.textContent = name;
     this._infoElement.textContent = info;
   }
@@ -22,5 +22,10 @@ export default class UserInfo {
     this._nameElement.textContent = name;
     this._infoElement.textContent = info;
     this._avatarSelector.src = avatar;
+  }
+
+  setUserPhoto({photoAlt, photoLink}){
+    this._avatarSelector.alt = photoAlt;
+    this._avatarSelector.src = photoLink;
   }
 }
